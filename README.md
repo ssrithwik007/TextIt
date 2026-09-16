@@ -614,19 +614,6 @@ Possible future additions, if they are actually useful:
 These should only be added if they preserve TextIt's simplicity.
 
 ---
-
-## License
-
-Choose a license appropriate for the project before publishing the repository.
-
-For example:
-
-```text
-MIT License
-```
-
----
-
 ## TextIt
 
 **Write it. Keep it. Copy it.**
