@@ -57,12 +57,19 @@ export default function TextPage() {
   return (
     <div className="flex flex-col h-screen max-w-4xl mx-auto w-full p-4 md:py-6 md:px-10 dot-grid">
       {/* Header bar */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-1">
-        <div className="flex items-center gap-3">
-          <h1 className="text-lg font-semibold text-dark-high tracking-tight select-none">TextIt</h1>
-          <span className="text-dark-border select-none">·</span>
+      <div className="flex items-center justify-between mb-1">
+        <div className="flex items-center gap-3 h-8">
+          <h1 className="text-lg font-semibold text-dark-high tracking-tight select-none leading-none">
+            TextIt
+          </h1>
+
+          <span className="text-dark-border select-none leading-none">
+            ·
+          </span>
+
           <SlugEditor slug={slug} />
         </div>
+
         <CopyButton content={content} />
       </div>
 

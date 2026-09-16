@@ -30,7 +30,7 @@ export default function DinoErrorPage({ content }) {
           <img
             src="/dino.png"
             alt=""
-            className="w-full h-auto select-none pointer-events-none"
+            className="w-32 h-auto select-none pointer-events-none"
             draggable="false"
             aria-hidden="true"
           />
@@ -78,9 +78,8 @@ export default function DinoErrorPage({ content }) {
 
         {/* Subtle toast feedback */}
         <div
-          className={`fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#323232] text-white text-sm px-5 py-2.5 rounded-lg shadow-lg transition-all duration-300 ${
-            copied ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'
-          }`}
+          className={`fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#323232] text-white text-sm px-5 py-2.5 rounded-lg shadow-lg transition-all duration-300 ${copied ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'
+            }`}
         >
           Copied
         </div>
