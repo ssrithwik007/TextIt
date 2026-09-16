@@ -17,6 +17,7 @@ export default function SlugEditor({ slug }) {
   useEffect(() => {
     if (editing && inputRef.current) {
       inputRef.current.focus();
+      inputRef.current.select();
     }
   }, [editing]);
 
@@ -26,7 +27,7 @@ export default function SlugEditor({ slug }) {
       setEditing(false);
       return;
     }
-    
+
     if (!isValidSlug(trimmed)) {
       setError('Invalid slug. Use 3+ letters, numbers, or dashes.');
       setTimeout(() => setError(''), 3000);
@@ -40,7 +41,7 @@ export default function SlugEditor({ slug }) {
       setEditing(false);
       navigate(`/c/${trimmed}`);
     } catch (err) {
-      if (err.code === '23505') { // unique violation
+      if (err.code === '23505') {
         setError('Slug already exists');
       } else {
         setError("Couldn't update slug");
@@ -61,29 +62,33 @@ export default function SlugEditor({ slug }) {
   };
 
   return (
-    <div className="flex items-center text-sm font-sans mb-4 mt-2">
-      <span className="text-dark-muted select-none">textit.com/c/</span>
-      
+    <div className="flex items-center gap-1 text-sm mb-4 mt-2 font-mono">
+      <span className="text-dark-muted/60 select-none">/c/</span>
+
       {editing ? (
         <input
           ref={inputRef}
           type="text"
-          className="ml-1 bg-transparent text-dark-high border-b border-dark-high outline-none w-32 focus:border-b-2"
+          className="bg-transparent text-dark-high border-b border-dark-muted outline-none w-40 pb-0.5 transition-colors focus:border-dark-high"
           value={newSlug}
           onChange={(e) => setNewSlug(e.target.value)}
           onBlur={handleSave}
           onKeyDown={handleKeyDown}
+          aria-label="Edit slug"
         />
       ) : (
-        <span 
-          className="ml-1 text-dark-text hover:text-dark-high cursor-text rounded px-1 -mx-1 hover:bg-dark-sec"
+        <span
+          className="text-dark-text-sec hover:text-dark-high cursor-text rounded px-1.5 py-0.5 -mx-1 hover:bg-dark-sec transition-colors duration-150"
           onClick={() => setEditing(true)}
-          title="Click to edit"
+          title="Click to edit slug"
         >
           {slug}
         </span>
       )}
-      {error && <span className="ml-3 text-red-400 text-xs">{error}</span>}
+
+      {error && (
+        <span className="ml-2 text-red-400/80 text-xs animate-pulse">{error}</span>
+      )}
     </div>
   );
 }

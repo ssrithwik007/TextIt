@@ -12,8 +12,7 @@ export default function Home() {
     async function initNote() {
       let slugFound = false;
       let slug = '';
-      
-      // Ensure unique slug
+
       while (!slugFound) {
         slug = generateRandomSlug(6);
         try {
@@ -22,8 +21,7 @@ export default function Home() {
             slugFound = true;
           }
         } catch (err) {
-          // If error is not found, assume it's safe or we have an issue
-          slugFound = true; 
+          slugFound = true;
         }
       }
 
@@ -39,14 +37,13 @@ export default function Home() {
 
     initNote();
 
-    return () => {
-      mounted = false;
-    };
+    return () => { mounted = false; };
   }, [navigate]);
 
   return (
-    <div className="flex items-center justify-center flex-grow">
-      <span className="text-dark-muted">Loading...</span>
+    <div className="flex flex-col items-center justify-center flex-grow gap-4">
+      <span className="text-lg font-semibold text-dark-high tracking-tight select-none">TextIt</span>
+      <span className="text-dark-muted loading-pulse tracking-widest text-xs font-mono">Creating your note...</span>
     </div>
   );
 }

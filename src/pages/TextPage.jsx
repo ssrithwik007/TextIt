@@ -47,7 +47,7 @@ export default function TextPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center flex-grow">
-        <span className="text-dark-muted">Loading...</span>
+        <span className="text-dark-muted loading-pulse tracking-widest text-sm font-mono">Loading...</span>
       </div>
     );
   }
@@ -55,11 +55,20 @@ export default function TextPage() {
   if (content === null) return null;
 
   return (
-    <div className="flex flex-col h-screen max-w-4xl mx-auto w-full p-4 md:p-8">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-2">
-        <SlugEditor slug={slug} />
+    <div className="flex flex-col h-screen max-w-4xl mx-auto w-full p-4 md:py-6 md:px-10 dot-grid">
+      {/* Header bar */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-1">
+        <div className="flex items-center gap-3">
+          <h1 className="text-lg font-semibold text-dark-high tracking-tight select-none">TextIt</h1>
+          <span className="text-dark-border select-none">·</span>
+          <SlugEditor slug={slug} />
+        </div>
         <CopyButton content={content} />
       </div>
+
+      {/* Thin separator */}
+      <div className="h-px bg-dark-border/50 mb-4" />
+
       <Editor slug={slug} initialContent={content} />
     </div>
   );

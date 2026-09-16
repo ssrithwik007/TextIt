@@ -8,18 +8,65 @@
   --color-dark-text-sec: #a1a1aa;
   --color-dark-muted: #71717a;
   --color-dark-high: #ffffff;
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
 }
 
 @layer base {
   body {
-    @apply bg-dark-bg text-dark-text font-sans antialiased m-0 min-h-screen flex flex-col;
+    @apply bg-dark-bg text-dark-text font-sans antialiased m-0 min-h-screen;
+  }
+
+  #root {
+    @apply min-h-screen flex flex-col;
+  }
+
+  ::selection {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
 }
 
-/* Base styles for Dino page to override dark theme */
-.dino-mode {
-  @apply bg-white text-gray-800 font-sans min-h-screen pt-[5vh] flex justify-center;
+/* Subtle dot grid pattern for the dark background */
+.dot-grid {
+  background-image: radial-gradient(circle, #1a1a1a 1px, transparent 1px);
+  background-size: 24px 24px;
 }
-.dino-mode * {
-  @apply selection:bg-blue-200;
+
+/* Spinner for loading states */
+@keyframes pulse-fade {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+.loading-pulse {
+  animation: pulse-fade 1.5s ease-in-out infinite;
+}
+
+/* Dino page — full Chromium error page replica appearance */
+.dino-mode {
+  background: #ffffff;
+  color: #202124;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding-top: 15vh;
+}
+.dino-mode ::selection {
+  background: rgba(66, 133, 244, 0.2);
 }
